@@ -1,0 +1,1 @@
+const InternTest = require ("../index")

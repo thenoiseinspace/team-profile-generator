@@ -1,0 +1,1 @@
+const ManagerTest = require ("../index")
