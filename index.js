@@ -1,11 +1,22 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
+
 const Employee = require ('./classes'); 
+const Manager = require ('./lib/Manager');
+const Intern = require ('./lib/Intern'); 
+const Engineer = require ('./lib/Engineer'); 
+
+// const generatePage = require ('./generateHTML'); 
+
+//I'm gonna be honest, I have no clue what this yargs thing is. It showed up when I ran something and I'm too scared to delete it. 
 const { choices } = require('yargs');
 
+//creating an empty array so I have some place to store the information I take from the user
+const employeeProfiles = []; 
+
 //first we take in the manager's information
-const init = () => {
+const askManagerQuestions = () => {
     inquirer.prompt([
      {
        type: 'input',
@@ -34,21 +45,22 @@ const init = () => {
         choices: ['Add engineer', 'Add intern', 'No additional team members, build team page'], 
         }
    ])
+   //Taking the responses and creating an object for the manager's profile
+   //Then adding that profile to the team array
+   //then based on answer to previous question, running either intern or engineer questions
    .then((res) => {
        console.log(res);
+       const managerProfile = new Manager(res.name, res.id, res.email, res.officeNumber);
+       employeeProfiles.push(managerProfile); 
        addTeamMembers(res.addOption); 
    }); 
  };
  
- init(); 
-
+ askManagerQuestions(); 
 
 
 //create a switch case statement to pick which questions are delivered
 
-//add question at end, response is pikachu 
-//make this whole thing a function, pass in parameter of pikachu
-//if theres a prompt to choose intern engineer or none, keep it firing until they click none, breaks when they click none 
 function addTeamMembers(teamMember){
     switch (teamMember) {
     case 'Add engineer':
@@ -77,6 +89,10 @@ function addTeamMembers(teamMember){
             ])
             .then((res) => {
                 console.log(res);
+//making a variable to hold this new profile
+                const engineerProfile = new Engineer(res.engineerName, res.engineerID, res.engineerEmail, res.githubName);
+//adding the profile to the team array
+                employeeProfiles.push(engineerProfile)
             }); 
             break; 
 
@@ -95,7 +111,7 @@ function addTeamMembers(teamMember){
             },
             {
             type: 'input',
-            name: 'engineerEmail',
+            name: 'internEmail',
             message: "What is the intern's email address?",
             },
             {
@@ -106,15 +122,21 @@ function addTeamMembers(teamMember){
         ])
         .then((res) => {
             console.log(res);
+//making a variable to hold this new profile
+            const internProfile = new Intern(res.internName, res.internID, res.internEmail, res.internSchool);
+//adding the profile to the team array
+            employeeProfiles.push(internProfile)
         }); 
         //NEED TO RETURN TO MENU HERE
         // };        
         break;
+    case 'No additional team members, build team page':
+        //will this work? 
+        // generateHTML(res); 
+        break; 
     default:
         console.log(`Sorry, no values were logged.`);
 }}
-
-
 
 
 
@@ -122,37 +144,3 @@ function addTeamMembers(teamMember){
 //use write file method
 //put into another file and import this in, from there call this function when you need it 
 //going to go with writeFile, 
-
-const generateHTML = (res) =>
-  `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <title>My Team Roster</title>
-</head>
-// <body>
-//   <div class="jumbotron jumbotron-fluid">
-//   <div class="container">
-//     <h1 class="display-4">Hi! My name is ${answers.name}</h1>
-//     <p class="lead">I am from ${answers.location}.</p>
-//     <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
-//     <ul class="list-group">
-//       <li class="list-group-item">My GitHub username is ${answers.github}</li>
-//       <li class="list-group-item">LinkedIn: ${answers.linkedin}</li>
-//     </ul>
-//   </div>
-// </div>
-// </body>
-// </html>`;
-
-// // Bonus using writeFileAsync as a promise
-// const init = () => {
-//   promptUser()
-//     .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
-//     .then(() => console.log('Successfully wrote to index.html'))
-//     .catch((err) => console.error(err));
-// };
-
-// init();
