@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
 const Employee = require ('./classes'); 
+const { choices } = require('yargs');
 
 //first we take in the manager's information
 const init = () => {
@@ -26,95 +27,101 @@ const init = () => {
        name: 'managerOfficeNumber',
        message: 'What is your office number?',
      },
+     {
+        type: "list", 
+        name: 'addOption', 
+        message: 'Would you like to add another team member?', 
+        choices: ['Add engineer', 'Add intern', 'No additional team members, build team page'], 
+        }
    ])
    .then((res) => {
        console.log(res);
+       addTeamMembers(res.addOption); 
    }); 
  };
  
- 
+ init(); 
 
 
 
 //create a switch case statement to pick which questions are delivered
 
-const expr = 'Engineer';
+//add question at end, response is pikachu 
+//make this whole thing a function, pass in parameter of pikachu
+//if theres a prompt to choose intern engineer or none, keep it firing until they click none, breaks when they click none 
+function addTeamMembers(teamMember){
+    switch (teamMember) {
+    case 'Add engineer':
+        console.log('Engineer selected'); 
+            inquirer.prompt([
+                {
+                type: 'input',
+                name: 'engineerName',
+                message: "What is the engineer's name?",
+                },
+                {
+                type: 'input',
+                name: 'engineerID',
+                message: "What is the engineer's ID?",
+                },
+                {
+                type: 'input',
+                name: 'engineerEmail',
+                message: "What is the engineer's email address?",
+                },
+                {
+                type: 'input',
+                name: 'githubName',
+                message: "What is the engineer's GitHub username?",
+                }
+            ])
+            .then((res) => {
+                console.log(res);
+            }); 
+            break; 
 
-switch (expr) {
-  case 'Engineer':
-    console.log('Engineer selected'); 
-        const initEngineer = () => {
+    case 'Add intern':
+        console.log('Intern selected');
             inquirer.prompt([
             {
             type: 'input',
-            name: 'engineerName',
-            message: "What is the engineer's name?",
+            name: 'internName',
+            message: "What is the intern's name?",
             },
             {
             type: 'input',
-            name: 'engineerID',
-            message: "What is the engineer's ID?",
+            name: 'internID',
+            message: "What is the intern's ID?",
             },
             {
             type: 'input',
             name: 'engineerEmail',
-            message: "What is the engineer's email address?",
+            message: "What is the intern's email address?",
             },
             {
             type: 'input',
-            name: 'githubName',
-            message: "What is the engineer's GitHub username?",
+            name: 'internSchool',
+            message: "What is the intern's school?",
             }
         ])
         .then((res) => {
             console.log(res);
         }); 
         //NEED TO RETURN TO MENU HERE
-        };
+        // };        
+        break;
+    default:
+        console.log(`Sorry, no values were logged.`);
+}}
 
-  case 'Intern':
-    console.log('Intern selected');
 
-    const initIntern = () => {
-        inquirer.prompt([
-        {
-        type: 'input',
-        name: 'internName',
-        message: "What is the intern's name?",
-        },
-        {
-        type: 'input',
-        name: 'internID',
-        message: "What is the intern's ID?",
-        },
-        {
-        type: 'input',
-        name: 'engineerEmail',
-        message: "What is the intern's email address?",
-        },
-        {
-        type: 'input',
-        name: 'internSchool',
-        message: "What is the intern's school?",
-        }
-    ])
-    .then((res) => {
-        console.log(res);
-    }); 
-    //NEED TO RETURN TO MENU HERE
-    };        
-
-    break;
-  default:
-    console.log(`Sorry, no values were logged.`);
-}
-
-init();
 
 
 
 /////////
-
+//use write file method
+//put into another file and import this in, from there call this function when you need it 
+//going to go with writeFile, 
 
 const generateHTML = (res) =>
   `<!DOCTYPE html>
