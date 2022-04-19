@@ -3,56 +3,128 @@ const fs = require('fs');
 const util = require('util');
 const Employee = require ('./classes'); 
 
-
+//first we take in the manager's information
 const init = () => {
-   inquirer.prompt([
-    {
-      type: 'input',
-      name: 'name',
-      message: 'What is your name?',
-    },
-    {
-      type: 'input',
-      name: 'location',
-      message: 'Where are you from?',
-    },
-    {
-      type: 'input',
-      name: 'hobby',
-      message: 'What is your favorite hobby?',
-    },
-    {
-      type: 'input',
-      name: 'food',
-      message: 'What is your favorite food?',
-    },
-    {
-      type: 'input',
-      name: 'github',
-      message: 'Enter your GitHub Username',
-    },
-    {
-      type: 'input',
-      name: 'linkedin',
-      message: 'Enter your LinkedIn URL.',
-    },
-  ])
-  .then((res) => {
-      console.log(res);
-  }); 
-};
+    inquirer.prompt([
+     {
+       type: 'input',
+       name: 'managerName',
+       message: 'What is your name?',
+     },
+     {
+       type: 'input',
+       name: 'managerID',
+       message: 'What is your employee ID?',
+     },
+     {
+       type: 'input',
+       name: 'managerEmail',
+       message: 'What is your email address?',
+     },
+     {
+       type: 'input',
+       name: 'managerOfficeNumber',
+       message: 'What is your office number?',
+     },
+   ])
+   .then((res) => {
+       console.log(res);
+   }); 
+ };
+ 
+ 
 
-init(); 
 
-// const generateHTML = (answers) =>
-//   `<!DOCTYPE html>
-// <html lang="en">
-// <head>
-//   <meta charset="UTF-8">
-//   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-//   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-//   <title>Document</title>
-// </head>
+
+//create a switch case statement to pick which questions are delivered
+
+const expr = 'Engineer';
+
+switch (expr) {
+  case 'Engineer':
+    console.log('Engineer selected'); 
+        const initEngineer = () => {
+            inquirer.prompt([
+            {
+            type: 'input',
+            name: 'engineerName',
+            message: "What is the engineer's name?",
+            },
+            {
+            type: 'input',
+            name: 'engineerID',
+            message: "What is the engineer's ID?",
+            },
+            {
+            type: 'input',
+            name: 'engineerEmail',
+            message: "What is the engineer's email address?",
+            },
+            {
+            type: 'input',
+            name: 'githubName',
+            message: "What is the engineer's GitHub username?",
+            }
+        ])
+        .then((res) => {
+            console.log(res);
+        }); 
+        //NEED TO RETURN TO MENU HERE
+        };
+
+  case 'Intern':
+    console.log('Intern selected');
+
+    const initIntern = () => {
+        inquirer.prompt([
+        {
+        type: 'input',
+        name: 'internName',
+        message: "What is the intern's name?",
+        },
+        {
+        type: 'input',
+        name: 'internID',
+        message: "What is the intern's ID?",
+        },
+        {
+        type: 'input',
+        name: 'engineerEmail',
+        message: "What is the intern's email address?",
+        },
+        {
+        type: 'input',
+        name: 'internSchool',
+        message: "What is the intern's school?",
+        }
+    ])
+    .then((res) => {
+        console.log(res);
+    }); 
+    //NEED TO RETURN TO MENU HERE
+    };        
+
+    break;
+  default:
+    console.log(`Sorry, no values were logged.`);
+}
+
+init();
+
+
+
+/////////
+
+
+const generateHTML = (res) =>
+  `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>My Team Roster</title>
+</head>
 // <body>
 //   <div class="jumbotron jumbotron-fluid">
 //   <div class="container">
