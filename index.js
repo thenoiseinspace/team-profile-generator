@@ -7,7 +7,7 @@ const Manager = require ('./lib/Manager');
 const Intern = require ('./lib/Intern'); 
 const Engineer = require ('./lib/Engineer'); 
 
-// const generatePage = require ('./generateHTML'); 
+const generatePage = require ('./generateHTML'); 
 
 //I'm gonna be honest, I have no clue what this yargs thing is. It showed up when I ran something and I'm too scared to delete it. 
 const { choices } = require('yargs');
@@ -138,7 +138,9 @@ function addTeamMembers(teamMember){
         console.log(`Sorry, no values were logged.`);
 }}
 
-
+function createTeamPage(){
+    fs.writeFileSync('./dist/teampage.html', generatePage(employeeProfiles));
+}
 
 /////////
 //use write file method
