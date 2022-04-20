@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "yes"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

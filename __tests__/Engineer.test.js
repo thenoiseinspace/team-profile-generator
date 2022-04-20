@@ -1,25 +1,21 @@
-const EngineerTest = require ("../index")
+const Engineer = require ("../lib/Engineer")
 
 //Basing this on activity 13
 
-const ManagerTest = require ("../index")
-const Manager = require('../lib/Manager'); 
-
 describe('testing Engineer class', () => {
-    it('should contain three properties of name, id and email', () => {
-      expect(new Engineer ("Bob Smith", 123, "email@email.com",)).toBe('1');
-    });
+    const person = new Engineer("Bob Smith", 123, "email@email.com",)
+    console.log(person.getRole()); 
   
     it('should assign a name to Engineer', () => {
-      expect(Engineer([0])).toBe('Bob Smith');
+      expect(person.getName()).toBe('Bob Smith');
     });
   
     it('should assign an id to Engineer', () => {
-      expect(Engineer([1])).toBe(123);
+      expect(person.getId()).toBe(123);
     });
   
-    it('should should assign an email to Engineer ', () => {
-      expect(Engineer([2])).toBe('email@email.com');
+    it('should should assign an email to Engineer', () => {
+      expect(person.getEmail()).toBe('email@email.com');
     });
   
   });
