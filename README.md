@@ -29,7 +29,7 @@ Screen recording here:
 ##Credits
 
 Sources used include: -Node documentation: https://nodejs.dev/learn/writing-files-with-nodejs \n
--Class activities: 2, 11, 21 from the OOP unit and mini project from Node unit \n
+-Class activities: 2, 11, 13, and 21 from the OOP unit and mini project from Node unit \n
 -Special acknowledgement to Jung's sample car generator walk-through in office hours\n
 -Study group (Lina Choi, Seamona Stewart, Noah Brunner, Steve Snavely, James Edwards) \n
 -Tutor: Omar

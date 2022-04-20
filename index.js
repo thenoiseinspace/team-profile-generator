@@ -139,6 +139,8 @@ function createTeamPage(){
     fs.writeFileSync('./dist/teampage.html', generatePage(employeeProfiles));
 }
 
+console.log(employeeProfiles); 
+
 /////////
 //use write file method
 //put into another file and import this in, from there call this function when you need it 
