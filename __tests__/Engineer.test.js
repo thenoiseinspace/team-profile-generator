@@ -5,25 +5,21 @@ const EngineerTest = require ("../index")
 const ManagerTest = require ("../index")
 const Manager = require('../lib/Manager'); 
 
-describe('testing manager class', () => {
-    it('should contain all three properties of name, id and email', () => {
-      expect(new Manager ("Bob Smith", 123, "email@email.com",)).toBe('1');
-      expect(fizzBuzz([1, 2])).toBe('1, 2');
+describe('testing Engineer class', () => {
+    it('should contain three properties of name, id and email', () => {
+      expect(new Engineer ("Bob Smith", 123, "email@email.com",)).toBe('1');
     });
   
-    it('should return Fizz if multiple of 3', () => {
-      expect(fizzBuzz([3])).toBe('Fizz');
-      expect(fizzBuzz([3, 6, 12])).toBe('Fizz, Fizz, Fizz');
+    it('should assign a name to Engineer', () => {
+      expect(Engineer([0])).toBe('Bob Smith');
     });
   
-    it('should return Buzz if multiple of 5', () => {
-      expect(fizzBuzz([10])).toBe('Buzz');
-      expect(fizzBuzz([10, 20, 25])).toBe('Buzz, Buzz, Buzz');
+    it('should assign an id to Engineer', () => {
+      expect(Engineer([1])).toBe(123);
     });
   
-    it('should return FizzBuzz if a multiple of both 3 and 5', () => {
-      expect(fizzBuzz([15])).toBe('FizzBuzz');
-      expect(fizzBuzz([15, 30, 45])).toBe('FizzBuzz, FizzBuzz, FizzBuzz');
+    it('should should assign an email to Engineer ', () => {
+      expect(Engineer([2])).toBe('email@email.com');
     });
   
   });
