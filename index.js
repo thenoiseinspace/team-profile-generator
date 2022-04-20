@@ -1,16 +1,13 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
+const { choices } = require('yargs');
 
-const Employee = require ('./classes'); 
+const Employee = require ('./lib/Employee'); 
 const Manager = require ('./lib/Manager');
 const Intern = require ('./lib/Intern'); 
 const Engineer = require ('./lib/Engineer'); 
-
-const generatePage = require ('./generateHTML'); 
-
-//I'm gonna be honest, I have no clue what this yargs thing is. It showed up when I ran something and I'm too scared to delete it. 
-const { choices } = require('yargs');
+const generateHTML = require ('./generateHTML'); 
 
 //creating an empty array so I have some place to store the information I take from the user
 const employeeProfiles = []; 
@@ -20,22 +17,22 @@ const askManagerQuestions = () => {
     inquirer.prompt([
      {
        type: 'input',
-       name: 'managerName',
+       name: 'name',
        message: 'What is your name?',
      },
      {
        type: 'input',
-       name: 'managerID',
+       name: 'id',
        message: 'What is your employee ID?',
      },
      {
        type: 'input',
-       name: 'managerEmail',
+       name: 'email',
        message: 'What is your email address?',
      },
      {
        type: 'input',
-       name: 'managerOfficeNumber',
+       name: 'officeNumber',
        message: 'What is your office number?',
      },
      {
@@ -68,17 +65,17 @@ function addTeamMembers(teamMember){
             inquirer.prompt([
                 {
                 type: 'input',
-                name: 'engineerName',
+                name: 'name',
                 message: "What is the engineer's name?",
                 },
                 {
                 type: 'input',
-                name: 'engineerID',
+                name: 'id',
                 message: "What is the engineer's ID?",
                 },
                 {
                 type: 'input',
-                name: 'engineerEmail',
+                name: 'email',
                 message: "What is the engineer's email address?",
                 },
                 {
@@ -101,17 +98,17 @@ function addTeamMembers(teamMember){
             inquirer.prompt([
             {
             type: 'input',
-            name: 'internName',
+            name: 'name',
             message: "What is the intern's name?",
             },
             {
             type: 'input',
-            name: 'internID',
+            name: 'id',
             message: "What is the intern's ID?",
             },
             {
             type: 'input',
-            name: 'internEmail',
+            name: 'email',
             message: "What is the intern's email address?",
             },
             {
