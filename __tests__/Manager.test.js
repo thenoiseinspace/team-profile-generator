@@ -5,9 +5,6 @@
 const Manager = require('../lib/Manager'); 
 
 describe('testing manager class', () => {
-    // it('should contain all three properties of name, id and email', () => {
-    //   expect(new Manager ("Bob Smith", 123, "email@email.com",)).toBe('1');
-    // });
     const person = new Manager("Bob Smith", 123, "email@email.com",)
     console.log(person.getRole()); 
 
