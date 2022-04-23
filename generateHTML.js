@@ -1,4 +1,22 @@
+//basing on the miniproject
+
+const fs = require('fs');
+const util = require('util');
+
+// create writeFile function using promises instead of a callback function
+const writeFileAsync = util.promisify(fs.writeFile);
+
 function generateHTML(employeeProfiles) {
+    let list = "";
+    employeeProfiles.forEach(createList);
+    
+    function createList(value) {
+     list += `<li> ${value.name} </li>`;
+     list += `<li> ${value.id} </li>`;
+     list += `<li> ${value.email} </li>`;
+     list += `<li> ${value.officeNumber} </li>`;
+    } 
+
     `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -19,14 +37,13 @@ function generateHTML(employeeProfiles) {
         <img class="card-img-top" src="..." alt="Card image cap">
         <div class="card-body">
         <h5 class="card-title">Card title</h5>
+        
         <ul>
-            <li>Name</li>
-            <li>ID</li>
-            <li>Email</li>
-            
+           ${list}
         </ul>    
         </div>
     </div>
+
 
     </body>
     </html>`
@@ -47,5 +64,14 @@ function generateHTML(employeeProfiles) {
 
     return employeesMarkup;
 }
+
+const init = () => {
+    promptUser()
+      .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
+      .then(() => console.log('Successfully wrote to index.html'))
+      .catch((err) => console.error(err));
+  };
+  
+  init();
 
 module.exports = generateHTML; 
