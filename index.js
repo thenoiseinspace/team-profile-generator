@@ -143,6 +143,7 @@ function addTeamMembers(teamMember) {
             break;
         case 'No additional team members, build team page':
             console.log(generateHTML(employeeProfiles));
+            generateHTML(employeeProfiles); 
             break;
         default:
             console.log(`Sorry, no values were logged.`);

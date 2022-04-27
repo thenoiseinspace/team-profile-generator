@@ -1,7 +1,7 @@
 //basing on the miniproject
-
 const fs = require('fs');
 const util = require('util');
+const inquirer = require('inquirer');
 
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -66,7 +66,7 @@ function generateHTML(employeeProfiles) {
 }
 
 const init = () => {
-    promptUser()
+    generateHTML()
       .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
       .then(() => console.log('Successfully wrote to index.html'))
       .catch((err) => console.error(err));
