@@ -1,10 +1,40 @@
 //basing on the miniproject
 const fs = require('fs');
 const util = require('util');
-const inquirer = require('inquirer');
+// const inquirer = require('inquirer');
 
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
+
+//creating empty array that will hold each block of content that is generated when the user adds a new employee
+const htmlBlock = []; 
+
+
+//creating a js function with an HTML block for each type of employee
+
+const makeManager = manager => {
+    console.log(manager); 
+    let managerHTMLblock =
+
+    `<div class = "card" style = "width: 16rem;">
+        <div class = "card-title">
+        ${manager.name}
+        <br/>
+        <h1>Manager</h1> 
+        </div>
+     
+        <ul class="unordered-list">
+            <li class="list-item">ID: ${manager.id}</li>
+            <li class="list-item">Email:<span id="email"><a href="mailto:${manager.email}">${manager.email}</a></li>
+            <li class="list-item">Office number: ${manager.officeNumber}</li>
+        </ul>
+    </div>
+    `; 
+   htmlBlock.push(managerHTMLblock)
+
+}
+
+
 
 function generateHTML(employeeProfiles) {
     let list = "";
