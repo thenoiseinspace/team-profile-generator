@@ -7,7 +7,7 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
-const generateHTML = require('./generateHTML');
+const generateHTML = require('./src/generateHTML.js');
 
 //creating an empty array so I have some place to store the information I take from the user
 const employeeProfiles = [];

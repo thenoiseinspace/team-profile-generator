@@ -6,12 +6,16 @@ const util = require('util');
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
 
+
+const generateTeamProfile = (team) => {
+
 //creating empty array that will hold each block of content that is generated when the user adds a new employee
 const htmlBlock = []; 
 
 
 //creating a js function with an HTML block for each type of employee
 
+//code block for managers
 const makeManager = manager => {
     console.log(manager); 
     let managerHTMLblock =
@@ -31,21 +35,74 @@ const makeManager = manager => {
     </div>
     `; 
    htmlBlock.push(managerHTMLblock)
-
 }
 
+//code block for engineers
+const makeEngineer = engineer => {
+    console.log(engineer); 
+    let engineerHTMLblock =
 
+    `<div class = "card" style = "width: 16rem;">
+        <div class = "card-title">
+        ${engineer.name}
+        <br/>
+        <h1>Engineer</h1> 
+        </div>
+     
+        <ul class="unordered-list">
+            <li class="list-item">ID: ${engineer.id}</li>
+            <li class="list-item">Email:<span id="email"><a href="mailto:${engineer.email}">${engineer.email}</a></li>
+            <li class="list-item">GitHub username: <a target="_blank" href="https://github.com/${engineer.githubName}">${engineer.githubName}</a></li>
+        </ul>
+    </div>
+    `; 
+   htmlBlock.push(engineerHTMLblock)
+}
 
-function generateHTML(employeeProfiles) {
-    let list = "";
-    employeeProfiles.forEach(createList);
-    
-    function createList(value) {
-     list += `<li> ${value.name} </li>`;
-     list += `<li> ${value.id} </li>`;
-     list += `<li> ${value.email} </li>`;
-     list += `<li> ${value.officeNumber} </li>`;
-    } 
+//code block for interns
+const makeIntern = intern => {
+    console.log(intern); 
+    let internHTMLblock =
+
+    `<div class = "card" style = "width: 16rem;">
+        <div class = "card-title">
+        ${intern.name}
+        <br/>
+        <h1>Intern</h1> 
+        </div>
+     
+        <ul class="unordered-list">
+            <li class="list-item">ID: ${intern.id}</li>
+            <li class="list-item">Email:<span id="email"><a href="mailto:${intern.email}">${intern.email}</a></li>
+            <li class="list-item">School:${intern.internSchool}</a></li>
+        </ul>
+    </div>
+    `; 
+   htmlBlock.push(internHTMLblock)
+}
+
+//creating a for loop to cycle through all created employees
+
+for (let i=0; i <team.length; i++) {
+    if (team[i].getRole() === "Manager"){
+        makeManager(team[i]); 
+    }
+    else if (team[i].getRole() === "Engineer"){
+        makeEngineer(team[i]);
+    }
+    else if (team[i].getRole() === "Intern") {
+        makeIntern(team[i]); 
+    }
+}
+
+return htmlBlock.join(''); 
+}
+
+module.exports = team => {
+
+// function generateHTML(employeeProfiles) {
+//     let list = "";
+//     employeeProfiles.forEach(createList);
 
     `<!DOCTYPE html>
     <html lang="en">
@@ -53,6 +110,7 @@ function generateHTML(employeeProfiles) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/style.css" />
     <title>Our Team</title>
     </head>
     <body>
@@ -63,45 +121,35 @@ function generateHTML(employeeProfiles) {
     </div>
     </div>
 
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        
-        <ul>
-           ${list}
-        </ul>    
-        </div>
-    </div>
-
+    <main> ${generateTeamProfile(team)} </main>
 
     </body>
     </html>`
 
-    let employeesMarkup = '';
-    for (let index = 0; index < employeeProfiles.length; index++) {
-        const currentEmployee = employeeProfiles[index];
-        if(currentEmployee.school !== undefined) {
+    // let employeesMarkup = '';
+    // for (let index = 0; index < employeeProfiles.length; index++) {
+    //     const currentEmployee = employeeProfiles[index];
+    //     if(currentEmployee.school !== undefined) {
 
-        } else {
+    //     } else {
             
-        }
-        employeesMarkup += `
-                            <div>${currentEmployee.name}</div>
-                            <div>${currentEmployee.id}</div>
-                            `;
-    }
+    //     }
+    //     employeesMarkup += `
+    //                         <div>${currentEmployee.name}</div>
+    //                         <div>${currentEmployee.id}</div>
+    //                         `;
+    // }
 
-    return employeesMarkup;
+    // return employeesMarkup;
 }
 
-const init = () => {
-    generateHTML()
-      .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
-      .then(() => console.log('Successfully wrote to index.html'))
-      .catch((err) => console.error(err));
-  };
+// const init = () => {
+//     generateHTML()
+//       .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
+//       .then(() => console.log('Successfully wrote to index.html'))
+//       .catch((err) => console.error(err));
+//   };
   
-  init();
+//   init();
 
-module.exports = generateHTML; 
+// module.exports = generateHTML; 
