@@ -24,8 +24,7 @@ Github repo link: https://github.com/thenoiseinspace/team-profile-generator
 Image (also in assets folder): 
 <img src="./assets/screenshot1.png">
 
-
-Screen recording here: 
+Screen recording here: https://drive.google.com/file/d/1mxdneDopxI_iig2WR_wmSHY6OoKWuiri/view?usp=sharing
 
 ## Credits
 

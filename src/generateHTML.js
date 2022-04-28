@@ -15,6 +15,17 @@ const generateHTML = (employeeProfiles) => {
     let htmlBlock = []; 
 //creating a js function with an HTML block for each type of employee
 
+// const HeaderHTML = () => {
+    
+//     let headerHTMLblock =
+
+//     `<header style = "color: white; background-color: darkgreen;"> 
+//         <h1>Our Team</h1>
+//     </header>
+//     `; 
+//    htmlBlock.push(headerHTMLblock)
+// }
+
     //code block for managers
     const makeManager = manager => {
     console.log(manager); 
