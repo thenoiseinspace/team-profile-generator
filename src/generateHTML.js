@@ -1,22 +1,22 @@
 //basing on the miniproject
 const fs = require('fs');
-const util = require('util');
+// const util = require('util');
 // const inquirer = require('inquirer');
 
 // create writeFile function using promises instead of a callback function
-const writeFileAsync = util.promisify(fs.writeFile);
+// const writeFileAsync = util.promisify(fs.writeFile);
 
 
-const generateTeamProfile = (team) => {
+const generateHTML = (employeeProfiles) => {
 
 //creating empty array that will hold each block of content that is generated when the user adds a new employee
-const htmlBlock = []; 
 
 
+    let htmlBlock = []; 
 //creating a js function with an HTML block for each type of employee
 
-//code block for managers
-const makeManager = manager => {
+    //code block for managers
+    const makeManager = manager => {
     console.log(manager); 
     let managerHTMLblock =
 
@@ -83,28 +83,29 @@ const makeIntern = intern => {
 
 //creating a for loop to cycle through all created employees
 
-for (let i=0; i <team.length; i++) {
-    if (team[i].getRole() === "Manager"){
-        makeManager(team[i]); 
+for (let i=0; i <employeeProfiles.length; i++) {
+    if (employeeProfiles[i].getRole() === "Manager"){
+        makeManager(employeeProfiles[i]); 
     }
-    else if (team[i].getRole() === "Engineer"){
-        makeEngineer(team[i]);
+    else if (employeeProfiles[i].getRole() === "Engineer"){
+        makeEngineer(employeeProfiles[i]);
     }
-    else if (team[i].getRole() === "Intern") {
-        makeIntern(team[i]); 
+    else if (employeeProfiles[i].getRole() === "Intern") {
+        makeIntern(employeeProfiles[i]); 
     }
 }
 
 return htmlBlock.join(''); 
 }
 
-module.exports = team => {
+module.exports = employeeProfiles => {
 
 // function generateHTML(employeeProfiles) {
 //     let list = "";
 //     employeeProfiles.forEach(createList);
 
-    `<!DOCTYPE html>
+    return
+    ` <!DOCTYPE html>
     <html lang="en">
     <head>
     <meta charset="UTF-8">
@@ -121,10 +122,11 @@ module.exports = team => {
     </div>
     </div>
 
-    <main> ${generateTeamProfile(team)} </main>
+    <main> ${generateHTML(employeeProfiles)} </main>
 
     </body>
-    </html>`
+    </html>
+    `; 
 
     // let employeesMarkup = '';
     // for (let index = 0; index < employeeProfiles.length; index++) {
@@ -152,4 +154,4 @@ module.exports = team => {
   
 //   init();
 
-// module.exports = generateHTML; 
+module.exports = generateHTML; 
