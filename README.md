@@ -31,8 +31,7 @@ Screen recording here: https://drive.google.com/file/d/1mxdneDopxI_iig2WR_wmSHY6
 Sources used include: -Node documentation: https://nodejs.dev/learn/writing-files-with-nodejs \n
 *Class activities: 2, 11, 13, and 21 from the OOP unit and mini project from Node unit \n
 *Special acknowledgement to Jung's sample car generator walk-through in office hours\n
-*Study group (Lina Choi, Seamona Stewart, Noah Brunner, Steve Snavely, James Edwards) \n
-*Tutor: Omar \n
+*Study group (Lina Choi, Brian Samuels, Seamona Stewart, Noah Brunner, Steve Snavely, James Edwards) \n
 *Focused study group: Derek Squad! With Seamona and Eric \n
 *Special thanks to my dad to working on this with me :) 
 
