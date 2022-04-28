@@ -17,7 +17,7 @@ Set up Node.js. Run npm install and make sure you have Inquirer. Type "node inde
 
 ## Usage
 
-Use this app to generate a webpage for an employee team. Answer each prompt in your command line to generate the page.
+Use this app to generate a webpage for an employee team. Answer each prompt in your command line to generate the page. Please note: per the challenge instructions, I have included a sample web page generated in the "output" folder. To create your own, simple delete this sample folder and run the program. 
 
 Github repo link: https://github.com/thenoiseinspace/team-profile-generator 
 
