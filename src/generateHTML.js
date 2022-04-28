@@ -20,11 +20,9 @@ const generateHTML = (employeeProfiles) => {
     console.log(manager); 
     let managerHTMLblock =
 
-    `<div class = "card" style = "width: 16rem;">
+    `<div class = "card" style = "width: 16rem; border: 1px solid black;">
         <div class = "card-title">
-        ${manager.name}
-        <br/>
-        <h1>Manager</h1> 
+        <h1 style="background-color:#90ee90;">${manager.name}, Manager</h1>
         </div>
      
         <ul class="unordered-list">
@@ -42,11 +40,9 @@ const makeEngineer = engineer => {
     console.log(engineer); 
     let engineerHTMLblock =
 
-    `<div class = "card" style = "width: 16rem;">
+    `<div class = "card" style = "width: 16rem; border: 1px solid black;">
         <div class = "card-title">
-        ${engineer.name}
-        <br/>
-        <h1>Engineer</h1> 
+        <h1 style="background-color:#90ee90;">${engineer.name}, Engineer</h1> 
         </div>
      
         <ul class="unordered-list">
@@ -64,11 +60,9 @@ const makeIntern = intern => {
     console.log(intern); 
     let internHTMLblock =
 
-    `<div class = "card" style = "width: 16rem;">
+    `<div class = "card" style = "width: 16rem; border: 1px solid black;">
         <div class = "card-title">
-        ${intern.name}
-        <br/>
-        <h1>Intern</h1> 
+        <h1 style="background-color:#90ee90;"> ${intern.name}, Intern</h1> 
         </div>
      
         <ul class="unordered-list">
@@ -100,18 +94,14 @@ return htmlBlock.join('');
 
 module.exports = employeeProfiles => {
 
-// function generateHTML(employeeProfiles) {
-//     let list = "";
-//     employeeProfiles.forEach(createList);
-
-    return
+    // return
     ` <!DOCTYPE html>
     <html lang="en">
     <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../dist/style.css" />
+    <link rel="stylesheet" href="../dist/style.css"/>
     <title>Our Team</title>
     </head>
     <body>
@@ -127,31 +117,6 @@ module.exports = employeeProfiles => {
     </body>
     </html>
     `; 
-
-    // let employeesMarkup = '';
-    // for (let index = 0; index < employeeProfiles.length; index++) {
-    //     const currentEmployee = employeeProfiles[index];
-    //     if(currentEmployee.school !== undefined) {
-
-    //     } else {
-            
-    //     }
-    //     employeesMarkup += `
-    //                         <div>${currentEmployee.name}</div>
-    //                         <div>${currentEmployee.id}</div>
-    //                         `;
-    // }
-
-    // return employeesMarkup;
 }
-
-// const init = () => {
-//     generateHTML()
-//       .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
-//       .then(() => console.log('Successfully wrote to index.html'))
-//       .catch((err) => console.error(err));
-//   };
-  
-//   init();
 
 module.exports = generateHTML; 

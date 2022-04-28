@@ -155,7 +155,7 @@ function addTeamMembers(teamMember) {
 }
 
 function buildTeamPage() {
-    console.log(`Finished creating team`);
+    console.log(`Your team members are`);
 
     // Create the output directory if the output path doesn't exist
     if (!fs.existsSync(OUTPUT_DIR)) {
