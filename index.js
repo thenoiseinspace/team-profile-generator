@@ -147,7 +147,7 @@ function addTeamMembers(teamMember) {
             break;
         case 'No additional team members, build team page':
             console.log(employeeProfiles);
-            buildTeamPage; 
+            buildTeamPage(); 
             break;
         default:
             console.log(`Sorry, no values were logged.`);
